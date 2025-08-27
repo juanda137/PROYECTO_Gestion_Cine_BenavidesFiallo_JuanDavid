@@ -1,0 +1,23 @@
+{
+  "name": "proyecto_express",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js --quiet",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.18.0"
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.1",
+    "nodemon": "^3.1.10"
+  }
+}
