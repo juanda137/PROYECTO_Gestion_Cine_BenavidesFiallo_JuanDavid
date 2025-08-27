@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #222;
+    color: #fff;
+    height: 100vh;
+    margin: 0;
+}
+
+.option-btn {
+    padding: 20px 40px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    background: #e50914;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.option-btn:hover {
+    background: #b00610;
+}
