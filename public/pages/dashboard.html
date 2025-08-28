@@ -1,38 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard - Cine Acme</title>
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-
 <body>
-    <nav>
-        <ul>
-            <li><a href="/pages/dashboard.html">Dashboard</a></li>
-            <li><a href="/pages/profile.html">Perfil</a></li>
-            <li><a href="/pages/settings.html">Configuración</a></li>
-        </ul>
-    </nav>
-    <section>
-        <h1>Bienvenido al Acme Cine</h1>
-        <div class="Cine-Dashboard">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../images/AcmeCine2Recortada.png" alt="">
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li><a href="#"><i class="fas fa-film"></i><span>Películas</span></a></li>
+                    <li><a href="#"><i class="fas fa-video"></i><span>Funciones</span></a></li>
+                    <li><a href="cines.html"><i class="fas fa-university"></i><span>Cines</span></a></li>
+                    <li><a href="#"><i class="fas fa-couch"></i><span>Salas</span></a></li>
+                    <li><a href="#"><i class="fas fa-users"></i><span>Usuarios</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a>
+            </div>
+        </aside>
 
-        </div>
-    </section>
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Bienvenido de nuevo, Administrador</h1>
+                <p>Gestiona todo desde este panel central.</p>
+            </header>
+            
+            <section class="dashboard-cards">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Gestionar Películas</h3>
+                        <p>Añade, edita y elimina las películas en cartelera.</p>
+                        <a href="#">Ir a Películas &rarr;</a>
+                    </div>
+                </div>
 
-    <section class="Peliculas-Dashboard">
-        <h2>Películas en cartelera</h2>
-        <div>
-            <ul>
-                <li>Película 1</li>
-                <li>Película 2</li>
-                <li>Película 3</li>
-            </ul>
-        </div>
-    </section>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Gestionar Cines</h3>
+                        <p>Administra las sucursales y sus detalles.</p>
+                        <a href="cines.html">Ir a Cines &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Gestionar Salas</h3>
+                        <p>Configura las salas de cada cine.</p>
+                        <a href="#">Ir a Salas &rarr;</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
 </body>
-
 </html>
