@@ -24,38 +24,78 @@
     background: #b00610;
 }
 
-.table-container {
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.cine-card {
     background-color: #242424;
     border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cine-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.card-body {
     padding: 20px;
-    overflow-x: auto;
+    flex-grow: 1;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+.card-title {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    color: #f4f4f4;
 }
 
-thead tr {
-    border-bottom: 2px solid #e50914;
+.card-title .codigo {
+    font-size: 0.8em;
+    color: #888;
+    background-color: #333;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-left: 10px;
 }
 
-th, td {
-    padding: 15px;
-    text-align: left;
-}
-
-th {
+.card-info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     color: #ccc;
-    font-size: 1.1em;
+    margin-bottom: 10px;
 }
 
-tbody tr {
-    border-bottom: 1px solid #333;
+.card-info-item i {
+    color: #e50914;
 }
 
-tbody tr:last-child {
-    border-bottom: none;
+.card-footer {
+    background-color: #1c1c1c;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-salas {
+    background-color: #3498db;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-salas:hover {
+    background-color: #2980b9;
 }
 
 .action-buttons button {
@@ -63,21 +103,23 @@ tbody tr:last-child {
     border: none;
     color: #ccc;
     cursor: pointer;
-    font-size: 1.2em;
-    margin-right: 15px;
+    font-size: 1.3em;
+    margin-left: 15px;
     transition: color 0.3s;
 }
 
 .action-buttons .edit-btn:hover {
     color: #3498db;
+    /* Azul */
 }
 
 .action-buttons .delete-btn:hover {
     color: #e74c3c;
+    /* Rojo Peligro */
 }
 
 .modal {
-    display: none; 
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -85,7 +127,7 @@ tbody tr:last-child {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .modal-content {
@@ -104,6 +146,7 @@ tbody tr:last-child {
         top: -100px;
         opacity: 0;
     }
+
     to {
         top: 0;
         opacity: 1;

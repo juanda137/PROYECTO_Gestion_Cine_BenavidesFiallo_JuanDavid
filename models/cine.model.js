@@ -19,7 +19,7 @@ export class CineModel {
     }
 
     static async getById(id) {
-        return await getCinesCollection().findOne({ _id: new ObjectId(id) });
+        return await getCinesCollection().findOne({ _id: ObjectId.createFromHexString(id) });
     }
     
     static async findByCodigo(codigo) {
@@ -34,6 +34,6 @@ export class CineModel {
     }
 
     static async delete(id) {
-        return await getCinesCollection().deleteOne({ _id: new ObjectId(id) });
+        return await getCinesCollection().deleteOne({ _id: ObjectId.createFromHexString(id) });
     }
 }

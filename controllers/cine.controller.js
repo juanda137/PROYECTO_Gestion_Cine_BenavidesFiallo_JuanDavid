@@ -46,3 +46,16 @@ export const deleteCine = async (req, res) => {
         res.status(500).json({ message: 'Error en el servidor', error });
     }
 };
+
+export const getCineById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const cine = await CineModel.getById(id);
+        if (!cine) {
+            return res.status(404).json({ message: 'Cine no encontrado' });
+        }
+        res.status(200).json(cine);
+    } catch (error) {
+        res.status(500).json({ message: 'Error en el servidor', error });
+    }
+};

@@ -1,12 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('authToken');
     if (!token) {
-        // Si no hay token, redirigir al login
         window.location.href = '/pages/login.html';
         return;
     }
 
-    const cinesTableBody = document.getElementById('cinesTableBody');
+    const cinesCardsContainer = document.getElementById('cinesCardsContainer');
     const modal = document.getElementById('cineModal');
     const modalTitle = document.getElementById('modalTitle');
     const cineForm = document.getElementById('cineForm');
@@ -15,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const apiBaseUrl = '/api/cines';
 
-    // Función para obtener y mostrar todos los cines
     async function fetchCines() {
         try {
             const response = await fetch(apiBaseUrl, {
@@ -24,20 +22,34 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error('Error al obtener los cines');
 
             const cines = await response.json();
-            cinesTableBody.innerHTML = ''; // Limpiar la tabla antes de añadir nuevos datos
+            cinesCardsContainer.innerHTML = ''; // Limpiar el contenedor
             cines.forEach(cine => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${cine.codigo}</td>
-                    <td>${cine.nombre}</td>
-                    <td>${cine.direccion}</td>
-                    <td>${cine.ciudad}</td>
-                    <td class="action-buttons">
-                        <button class="edit-btn" data-id="${cine._id}"><i class="fas fa-edit"></i></button>
-                        <button class="delete-btn" data-id="${cine._id}"><i class="fas fa-trash"></i></button>
-                    </td>
+                const card = document.createElement('div');
+                card.className = 'cine-card';
+                card.innerHTML = `
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            ${cine.nombre}
+                            <span class="codigo">${cine.codigo}</span>
+                        </h3>
+                        <div class="card-info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${cine.direccion}</span>
+                        </div>
+                        <div class="card-info-item">
+                            <i class="fas fa-city"></i>
+                            <span>${cine.ciudad}</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="salas.html?cineId=${cine._id}&cineNombre=${encodeURIComponent(cine.nombre)}" class="btn-salas">Ver Salas</a>
+                        <div class="action-buttons">
+                            <button class="edit-btn" data-id="${cine._id}"><i class="fas fa-edit"></i></button>
+                            <button class="delete-btn" data-id="${cine._id}"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
                 `;
-                cinesTableBody.appendChild(tr);
+                cinesCardsContainer.appendChild(card);
             });
         } catch (error) {
             console.error(error);
@@ -45,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Abrir el modal
     function openModal(mode, cine = null) {
         cineForm.reset();
         if (mode === 'add') {
@@ -56,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modalTitle.textContent = 'Editar Cine';
             document.getElementById('cineId').value = cine._id;
             document.getElementById('codigo').value = cine.codigo;
-            document.getElementById('codigo').disabled = true; // No permitir editar el código
+            document.getElementById('codigo').disabled = true;
             document.getElementById('nombre').value = cine.nombre;
             document.getElementById('direccion').value = cine.direccion;
             document.getElementById('ciudad').value = cine.ciudad;
@@ -64,21 +75,16 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = 'block';
     }
 
-    // Cerrar el modal
     function closeModal() {
         modal.style.display = 'none';
     }
 
-    // Event Listeners
     addCineBtn.addEventListener('click', () => openModal('add'));
     closeModalBtn.addEventListener('click', closeModal);
     window.addEventListener('click', (event) => {
-        if (event.target == modal) {
-            closeModal();
-        }
+        if (event.target == modal) closeModal();
     });
 
-    // Manejar el envío del formulario (Crear y Actualizar)
     cineForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         const id = document.getElementById('cineId').value;
@@ -97,50 +103,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify(data)
             });
-
             const result = await response.json();
-            if (!response.ok) {
-                throw new Error(result.message || 'Error al guardar el cine');
-            }
-
+            if (!response.ok) throw new Error(result.message || 'Error al guardar el cine');
+            
             closeModal();
-            fetchCines(); // Recargar la lista de cines
+            fetchCines();
         } catch (error) {
             console.error(error);
             alert(error.message);
         }
     });
     
-    // Manejar clicks en botones de editar y eliminar
-    cinesTableBody.addEventListener('click', async (event) => {
+    cinesCardsContainer.addEventListener('click', async (event) => {
         const target = event.target.closest('button');
         if (!target) return;
 
-        const id = target.dataset.id;
+        const card = target.closest('.cine-card');
+        const cineId = target.dataset.id;
         
         if (target.classList.contains('edit-btn')) {
-            // Lógica para editar
-            const response = await fetch(`${apiBaseUrl}?id=${id}`, { // Esta es una forma simple, idealmente se necesita un endpoint /api/cines/:id
-                 headers: { 'Authorization': `Bearer ${token}` }
-            });
-            const cines = await response.json();
-            const cine = cines.find(c => c._id === id); // buscar el cine específico
-            openModal('edit', cine);
+            try {
+                const response = await fetch(`${apiBaseUrl}/${cineId}`, { 
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!response.ok) throw new Error('No se pudo obtener la información del cine.');
+                const cine = await response.json();
+                openModal('edit', cine);
+            } catch (error) {
+                 alert(error.message);
+                 console.error(error);
+            }
         }
 
         if (target.classList.contains('delete-btn')) {
-            // Lógica para eliminar
             if (confirm('¿Estás seguro de que quieres eliminar este cine?')) {
                 try {
-                    const response = await fetch(`${apiBaseUrl}/${id}`, {
+                    const response = await fetch(`${apiBaseUrl}/${cineId}`, {
                         method: 'DELETE',
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
-
                     const result = await response.json();
                     if (!response.ok) throw new Error(result.message);
-
-                    fetchCines(); // Recargar la lista
+                    fetchCines();
                 } catch (error) {
                     console.error(error);
                     alert(error.message);
@@ -149,11 +153,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Carga inicial de datos
     fetchCines();
 
-     // Logout
-     document.getElementById('logoutBtn').addEventListener('click', () => {
+    document.getElementById('logoutBtn').addEventListener('click', () => {
         localStorage.removeItem('authToken');
         window.location.href = '/pages/login.html';
     });

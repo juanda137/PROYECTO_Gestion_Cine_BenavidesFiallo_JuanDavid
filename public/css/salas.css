@@ -1,0 +1,54 @@
+@import url('cines.css');
+
+.header-title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.back-button {
+    font-size: 0.9em;
+    color: #ccc;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.back-button:hover {
+    color: #e50914;
+}
+
+.sala-card {
+    background-color: #242424;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.sala-card:hover {
+    transform: translateY(-5px);
+}
+
+.sala-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.sala-icon {
+    font-size: 2.5em;
+    color: #e50914;
+}
+
+.sala-details h3 {
+    font-size: 1.4em;
+    margin: 0;
+}
+
+.sala-details p {
+    color: #aaa;
+    margin: 0;
+}

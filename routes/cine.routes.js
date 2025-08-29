@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getAllCines, createCine, updateCine, deleteCine } from '../controllers/cine.controller.js';
+import { getAllCines, createCine, updateCine, deleteCine, getCineById } from '../controllers/cine.controller.js';
 
 const router = Router();
 
@@ -10,5 +10,7 @@ router.post('/', createCine);
 router.put('/:id', updateCine);
 
 router.delete('/:id', deleteCine);
+
+router.get('/:id', getCineById);
 
 export default router;
