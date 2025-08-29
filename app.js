@@ -9,6 +9,8 @@ import authRoutes from './routes/auth.routes.js';
 import cineRoutes from './routes/cine.routes.js';
 import salaRoutes from './routes/sala.routes.js';
 import peliculaRoutes from './routes/pelicula.routes.js';
+import funcionRoutes from './routes/funcion.routes.js';
+import userRoutes from './routes/user.routes.js';
 
 import { authenticateToken } from './middleware/auth.js';
 
@@ -25,6 +27,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/cines', authenticateToken, cineRoutes);
 app.use('/api/cines/:cineId/salas', authenticateToken, salaRoutes);
 app.use('/api/peliculas', authenticateToken, peliculaRoutes);
+app.use('/api/funciones', authenticateToken, funcionRoutes);
+app.use('/api/users', authenticateToken, userRoutes);
 
 async function startServer() {
     await connectToDatabase();

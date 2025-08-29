@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Cines - Cine Acme</title>
+    <title>Gestión de Funciones - Cine Acme</title>
     <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/cines.css">
+    <link rel="stylesheet" href="../css/funciones.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -17,9 +17,9 @@
             <nav class="sidebar-nav">
                 <ul>
                     <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li><a href="cines.html" class="active"><i class="fas fa-university"></i><span>Cines</span></a></li>
+                    <li><a href="cines.html"><i class="fas fa-university"></i><span>Cines</span></a></li>
                     <li><a href="peliculas.html"><i class="fas fa-film"></i><span>Películas</span></a></li>
-                    <li><a href="funciones.html"><i class="fas fa-video"></i><span>Funciones</span></a></li>
+                    <li><a href="funciones.html" class="active"><i class="fas fa-video"></i><span>Funciones</span></a></li>
                     <li><a href="usuarios.html"><i class="fas fa-users"></i><span>Usuarios</span></a></li>
                 </ul>
             </nav>
@@ -28,42 +28,40 @@
 
         <main class="main-content">
             <header class="main-header">
-                <h1>Gestión de Cines</h1>
-                <button class="btn-primary" id="addCineBtn"><i class="fas fa-plus"></i> Añadir Cine</button>
+                <h1>Gestión de Funciones</h1>
+                <button class="btn-primary" id="addFuncionBtn"><i class="fas fa-plus"></i> Añadir Función</button>
             </header>
             
-            <section id="cinesCardsContainer" class="cards-container">
+            <section id="funcionesCardsContainer" class="cards-container">
                 </section>
         </main>
     </div>
 
-    <div id="cineModal" class="modal">
+    <div id="funcionModal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
-            <h2 id="modalTitle">Añadir Nuevo Cine</h2>
-            <form id="cineForm">
-                <input type="hidden" id="cineId">
+            <h2 id="modalTitle">Añadir Nueva Función</h2>
+            <form id="funcionForm">
                 <div class="form-group">
-                    <label for="codigo">Código</label>
-                    <input type="text" id="codigo" name="codigo" required>
+                    <label for="cineSelect">Cine</label>
+                    <select id="cineSelect" name="cine_id" required></select>
                 </div>
                 <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <label for="salaSelect">Sala</label>
+                    <select id="salaSelect" name="sala_id" required disabled></select>
                 </div>
                 <div class="form-group">
-                    <label for="direccion">Dirección</label>
-                    <input type="text" id="direccion" name="direccion" required>
+                    <label for="peliculaSelect">Película</label>
+                    <select id="peliculaSelect" name="pelicula_id" required></select>
                 </div>
                 <div class="form-group">
-                    <label for="ciudad">Ciudad</label>
-                    <input type="text" id="ciudad" name="ciudad" required>
+                    <label for="fecha_hora">Fecha y Hora de Inicio</label>
+                    <input type="datetime-local" id="fecha_hora" name="fecha_hora" required>
                 </div>
                 <button type="submit" class="btn-primary">Guardar</button>
             </form>
         </div>
     </div>
-
-    <script src="../js/cines.js"></script>
+    <script type="module" src="../js/funciones.js"></script>
 </body>
 </html>

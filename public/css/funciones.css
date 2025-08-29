@@ -1,0 +1,90 @@
+@import url('cines.css');
+
+.cards-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.funcion-card {
+    background-color: #242424;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.funcion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.card-header {
+    background-color: #1c1c1c;
+    padding: 15px 20px;
+    color: #e50914;
+    font-size: 1.3em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #333;
+}
+
+.card-body {
+    padding: 20px;
+    flex-grow: 1;
+    color: #ccc;
+    font-size: 0.95em;
+}
+
+.card-body p {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-body p i {
+    color: #e50914;
+    font-size: 1.1em;
+}
+
+.card-footer {
+    background-color: #1c1c1c;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #333;
+}
+
+.action-buttons button {
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 1.3em;
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+
+.action-buttons .delete-btn:hover {
+    color: #e74c3c;
+}
+
+#funcionForm select, #funcionForm input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #444;
+    background-color: #1a1a1a;
+    color: #f4f4f4;
+    font-size: 1em;
+}
+
+#funcionForm select:disabled {
+    background-color: #333;
+    cursor: not-allowed;
+}
