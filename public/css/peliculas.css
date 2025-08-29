@@ -1,7 +1,7 @@
 @import url('cines.css'); 
 
 .cards-container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .pelicula-card {
@@ -78,4 +78,10 @@
     color: #f4f4f4;
     font-size: 1em;
     width: 100%;
+}
+
+@media (max-width: 1000px) {
+    .cards-container {
+    grid-template-columns: 1fr 1fr;
+}
 }

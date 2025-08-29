@@ -3,7 +3,7 @@ import 'dotenv/config';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import './db.js';
+import { connectToDatabase } from './db.js';
 
 import authRoutes from './routes/auth.routes.js';
 import cineRoutes from './routes/cine.routes.js';
@@ -22,18 +22,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/auth', authRoutes);
-
-app.get('/dashboard', authenticateToken, (req, res) => {
-    res.json({
-        message: `Bienvenido al dashboard, usuario con ID: ${req.user.id}!`,
-        userData: req.user
-    });
-});
 app.use('/api/cines', authenticateToken, cineRoutes);
 app.use('/api/cines/:cineId/salas', authenticateToken, salaRoutes);
-app.use('/api/peliculas', authenticateToken, peliculaRoutes); 
+app.use('/api/peliculas', authenticateToken, peliculaRoutes);
 
-const PORT = process.env.PORT || 3000;
-const HOSTNAME = process.env.HOSTNAME || 'localhost';
+async function startServer() {
+    await connectToDatabase();
 
-app.listen(PORT, () => console.log(`Servidor corriendo en http://${HOSTNAME}:${PORT}`));
+    const PORT = process.env.PORT || 3000;
+    const HOSTNAME = process.env.HOSTNAME || 'localhost';
+
+    app.listen(PORT, () => {
+        console.log(`Servidor corriendo en http://${HOSTNAME}:${PORT}`);
+    });
+}
+
+startServer();
