@@ -86,7 +86,7 @@
 }
 
 .btn-salas {
-    background-color: #3498db;
+    background-color: #e50914;
     color: white;
     padding: 8px 15px;
     border-radius: 5px;
@@ -95,7 +95,7 @@
 }
 
 .btn-salas:hover {
-    background-color: #2980b9;
+    background-color: #b00610;
 }
 
 .action-buttons button {
