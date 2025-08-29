@@ -1,0 +1,81 @@
+@import url('cines.css'); 
+
+.cards-container {
+    grid-template-columns: 1fr 1fr;
+}
+
+.pelicula-card {
+    background-color: #242424;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.pelicula-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-poster img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-body {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.2em;
+    margin: 0 0 10px 0;
+}
+
+.card-genre {
+    background-color: #e50914;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: bold;
+    align-self: flex-start;
+    margin-bottom: auto;
+}
+
+.card-footer {
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 1px solid #333;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-content {
+    max-width: 800px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group textarea, .form-group select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #444;
+    background-color: #1a1a1a;
+    color: #f4f4f4;
+    font-size: 1em;
+    width: 100%;
+}

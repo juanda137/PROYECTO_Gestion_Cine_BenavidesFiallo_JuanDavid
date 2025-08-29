@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Películas - Cine Acme</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/peliculas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container"> 
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../images/AcmeCine2Recortada.png" alt="Logo Cine Acme">
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li><a href="cines.html"><i class="fas fa-university"></i><span>Cines</span></a></li>
+                    <li><a href="peliculas.html" class="active"><i class="fas fa-film"></i><span>Películas</span></a></li>
+                    <li><a href="#"><i class="fas fa-video"></i><span>Funciones</span></a></li>
+                    <li><a href="#"><i class="fas fa-users"></i><span>Usuarios</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer"><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a></div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Gestión de Películas</h1>
+                <button class="btn-primary" id="addPeliculaBtn"><i class="fas fa-plus"></i> Añadir Película</button>
+            </header>
+            
+            <section id="peliculasCardsContainer" class="cards-container">
+                </section>
+        </main>
+    </div>
+
+    <div id="peliculaModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modalTitle">Añadir Nueva Película</h2>
+            <form id="peliculaForm">
+                <input type="hidden" id="peliculaId">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="codigo">Código</label>
+                        <input type="text" id="codigo" name="codigo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="titulo">Título</label>
+                        <input type="text" id="titulo" name="titulo" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="sinopsis">Sinopsis</label>
+                        <textarea id="sinopsis" name="sinopsis" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="reparto">Reparto (actores separados por coma)</label>
+                        <input type="text" id="reparto" name="reparto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="director">Director</label>
+                        <input type="text" id="director" name="director" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="duracion">Duración (minutos)</label>
+                        <input type="number" id="duracion" name="duracion" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="genero">Género</label>
+                        <select id="genero" name="genero" required>
+                            <option value="Acción">Acción</option>
+                            <option value="Comedia">Comedia</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Ciencia Ficción">Ciencia Ficción</option>
+                            <option value="Terror">Terror</option>
+                            <option value="Infantil">Infantil</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="clasificacion">Clasificación</label>
+                        <select id="clasificacion" name="clasificacion" required>
+                            <option value="G">G (Todo Público)</option>
+                            <option value="PG">PG (Guía Parental Sugerida)</option>
+                            <option value="PG-13">PG-13 (Mayores de 13)</option>
+                            <option value="R">R (Restringido)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="idioma">Idioma</label>
+                        <input type="text" id="idioma" name="idioma" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha_estreno">Fecha de Estreno</label>
+                        <input type="date" id="fecha_estreno" name="fecha_estreno" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="poster">URL del Póster</label>
+                        <input type="url" id="poster" name="poster" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="trailer">URL del Tráiler (YouTube, etc.)</label>
+                        <input type="url" id="trailer" name="trailer" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+    <script src="../js/peliculas.js"></script>
+</body>
+</html>

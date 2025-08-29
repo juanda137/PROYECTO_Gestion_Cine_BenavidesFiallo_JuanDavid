@@ -8,6 +8,7 @@ import './db.js';
 import authRoutes from './routes/auth.routes.js';
 import cineRoutes from './routes/cine.routes.js';
 import salaRoutes from './routes/sala.routes.js';
+import peliculaRoutes from './routes/pelicula.routes.js';
 
 import { authenticateToken } from './middleware/auth.js';
 
@@ -30,6 +31,7 @@ app.get('/dashboard', authenticateToken, (req, res) => {
 });
 app.use('/api/cines', authenticateToken, cineRoutes);
 app.use('/api/cines/:cineId/salas', authenticateToken, salaRoutes);
+app.use('/api/peliculas', authenticateToken, peliculaRoutes); 
 
 const PORT = process.env.PORT || 3000;
 const HOSTNAME = process.env.HOSTNAME || 'localhost';

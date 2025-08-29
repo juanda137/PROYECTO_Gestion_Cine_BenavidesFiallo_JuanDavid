@@ -26,7 +26,7 @@
 
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
@@ -110,12 +110,10 @@
 
 .action-buttons .edit-btn:hover {
     color: #3498db;
-    /* Azul */
 }
 
 .action-buttons .delete-btn:hover {
     color: #e74c3c;
-    /* Rojo Peligro */
 }
 
 .modal {
