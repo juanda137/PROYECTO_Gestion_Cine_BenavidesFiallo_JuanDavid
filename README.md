@@ -1,6 +1,6 @@
 # Gestión de Cines Acme
 
-![Logo de Cine Acme](public/images/AcmeCine2Recortada.png)
+![Logo de Cine Acme](public/images/AcmeCineRecortada.png)
 
 ## 📜 Descripción del Proyecto
 
