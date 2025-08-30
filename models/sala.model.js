@@ -1,4 +1,3 @@
-// models/sala.model.js
 import { getDb } from '../db.js';
 import { ObjectId } from 'mongodb';
 
@@ -8,7 +7,18 @@ const getSalasCollection = () => {
 
 export class SalaModel {
     static async create(sala) {
-        sala.cine_id = ObjectId.createFromHexString(sala.cine_id);
+        const cineId = ObjectId.createFromHexString(sala.cine_id);
+
+        const existingSala = await getSalasCollection().findOne({ 
+            codigo: sala.codigo, 
+            cine_id: cineId 
+        });
+
+        if (existingSala) {
+            throw new Error('El código de la sala ya existe en este cine.');
+        }
+
+        sala.cine_id = cineId;
         return await getSalasCollection().insertOne(sala);
     }
 

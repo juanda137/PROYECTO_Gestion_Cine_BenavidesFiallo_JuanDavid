@@ -12,6 +12,8 @@ import peliculaRoutes from './routes/pelicula.routes.js';
 import funcionRoutes from './routes/funcion.routes.js';
 import userRoutes from './routes/user.routes.js';
 
+import reporteRoutes from './routes/reporte.routes.js';
+
 import { authenticateToken } from './middleware/auth.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -29,6 +31,8 @@ app.use('/api/cines/:cineId/salas', authenticateToken, salaRoutes);
 app.use('/api/peliculas', authenticateToken, peliculaRoutes);
 app.use('/api/funciones', authenticateToken, funcionRoutes);
 app.use('/api/users', authenticateToken, userRoutes);
+
+app.use('/api/reportes', authenticateToken, reporteRoutes);
 
 async function startServer() {
     await connectToDatabase();
