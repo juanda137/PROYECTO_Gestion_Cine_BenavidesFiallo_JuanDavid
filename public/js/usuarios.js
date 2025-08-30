@@ -72,11 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
             passwordInput.placeholder = 'Dejar en blanco para no cambiar';
             passwordInput.required = false;
         }
-        modal.style.display = 'block';
+        modal.classList.add('active');
     }
 
     function closeModal() {
-        modal.style.display = 'none';
+        modal.classList.remove('active');
     }
 
     addUserBtn.addEventListener('click', () => openModal('add'));

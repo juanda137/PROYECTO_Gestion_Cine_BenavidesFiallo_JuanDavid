@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error('Error al obtener los cines');
 
             const cines = await response.json();
-            cinesCardsContainer.innerHTML = ''; // Limpiar el contenedor
+            cinesCardsContainer.innerHTML = '';
             cines.forEach(cine => {
                 const card = document.createElement('div');
                 card.className = 'cine-card';
@@ -72,11 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('direccion').value = cine.direccion;
             document.getElementById('ciudad').value = cine.ciudad;
         }
-        modal.style.display = 'block';
+        modal.classList.add('active');
     }
 
     function closeModal() {
-        modal.style.display = 'none';
+        modal.classList.remove('active');
     }
 
     addCineBtn.addEventListener('click', () => openModal('add'));

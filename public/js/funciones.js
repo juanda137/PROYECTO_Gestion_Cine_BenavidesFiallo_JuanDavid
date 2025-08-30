@@ -60,11 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
         populateSelect('cineSelect', '/api/cines', 'Seleccione un cine', '_id', 'nombre');
         populateSelect('peliculaSelect', '/api/peliculas', 'Seleccione una película', '_id', 'titulo');
         
-        modal.style.display = 'block';
+        modal.classList.add('active');
     }
 
     function closeModal() {
-        modal.style.display = 'none';
+        modal.classList.remove('active');
     }
 
     cineSelect.addEventListener('change', async (event) => {

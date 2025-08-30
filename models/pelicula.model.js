@@ -16,8 +16,9 @@ export class PeliculaModel {
         return await getPeliculasCollection().insertOne(pelicula);
     }
 
-    static async getAll() {
-        return await getPeliculasCollection().find().toArray();
+    static async getAll(options = {}) {
+        const { sort = {}, limit = 0 } = options;
+        return await getPeliculasCollection().find().sort(sort).limit(limit).toArray();
     }
 
     static async getById(id) {

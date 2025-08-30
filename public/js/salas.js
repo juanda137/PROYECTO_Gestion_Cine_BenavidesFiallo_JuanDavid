@@ -70,11 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('codigo').value = sala.codigo;
             document.getElementById('numero_sillas').value = sala.sillas;
         }
-        modal.style.display = 'block';
+        modal.classList.add('active');
     }
 
     function closeModal() {
-        modal.style.display = 'none';
+        modal.classList.remove('active');
     }
 
     addSalaBtn.addEventListener('click', () => openModal('add'));

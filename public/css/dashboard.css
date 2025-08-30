@@ -108,7 +108,11 @@ a {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    margin-top: 40px;
+    margin-top: 20px;
+}
+
+h2 {
+    margin-bottom: 10px;
 }
 
 .card {
@@ -163,6 +167,52 @@ a {
 
 img {
     width: 200px;
+}
+
+.film-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.pelicula-card-small {
+    background-color: #242424;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.pelicula-card-small:hover {
+    transform: scale(1.05);
+}
+
+.pelicula-card-small img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.pelicula-info {
+    padding: 15px;
+}
+
+.pelicula-info h4 {
+    margin: 0 0 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pelicula-info span {
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+@media (max-width: 1024px) {
+    .film-cards {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {

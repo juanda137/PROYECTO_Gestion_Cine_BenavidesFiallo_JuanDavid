@@ -53,3 +53,12 @@ export const deletePelicula = async (req, res) => {
         res.status(500).json({ message: 'Error en el servidor', error: error.message });
     }
 };
+
+export const getRecentPeliculas = async (req, res) => {
+    try {
+        const recentPeliculas = await PeliculaModel.getAll({ sort: { _id: -1 }, limit: 3 });
+        res.status(200).json(recentPeliculas);
+    } catch (error) {
+        res.status(500).json({ message: 'Error en el servidor', error: error.message });
+    }
+};

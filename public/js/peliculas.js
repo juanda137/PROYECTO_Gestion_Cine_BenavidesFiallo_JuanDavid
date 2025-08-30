@@ -73,11 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('poster').value = pelicula.poster;
             document.getElementById('trailer').value = pelicula.trailer;
         }
-        modal.style.display = 'block';
+        modal.classList.add('active');
     }
 
     function closeModal() {
-        modal.style.display = 'none';
+        modal.classList.remove('active');
     }
 
     addPeliculaBtn.addEventListener('click', () => openModal('add'));
