@@ -28,7 +28,7 @@ export class CineModel {
 
     static async update(id, data) {
         return await getCinesCollection().updateOne(
-            { _id: new ObjectId(id) },
+            { _id: ObjectId.createFromHexStrings(id) },
             { $set: data }
         );
     }
