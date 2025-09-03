@@ -1,5 +1,5 @@
-// controllers/funcion.controller.js
 import { FuncionModel } from '../models/funcion.model.js';
+import { FuncionDto } from '../dtos/funcion.dto.js';
 
 export const getAllFunciones = async (req, res) => {
     try {
@@ -12,11 +12,12 @@ export const getAllFunciones = async (req, res) => {
 
 export const createFuncion = async (req, res) => {
     try {
-        const newFuncion = await FuncionModel.create(req.body);
+        const funcionData = new FuncionDto(req.body);
+        const newFuncion = await FuncionModel.create(funcionData);
         res.status(201).json({ message: 'Función creada exitosamente', funcionId: newFuncion.insertedId });
     } catch (error) {
         if (error.message.includes('Conflicto de horario')) {
-            return res.status(409).json({ message: error.message }); // 409 Conflict
+            return res.status(409).json({ message: error.message });
         }
         res.status(500).json({ message: 'Error en el servidor', error: error.message });
     }

@@ -1,4 +1,5 @@
 import { CineModel } from '../models/cine.model.js';
+import { CineDto } from '../dtos/cine.dto.js';
 
 export const getAllCines = async (req, res) => {
     try {
@@ -11,7 +12,8 @@ export const getAllCines = async (req, res) => {
 
 export const createCine = async (req, res) => {
     try {
-        const newCine = await CineModel.create(req.body);
+        const cineData = new CineDto(req.body);
+        const newCine = await CineModel.create(cineData);
         res.status(201).json({ message: 'Cine creado exitosamente', cineId: newCine.insertedId });
     } catch (error) {
         if (error.message.includes('código del cine ya existe')) {
@@ -24,7 +26,8 @@ export const createCine = async (req, res) => {
 export const updateCine = async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await CineModel.update(id, req.body);
+        const cineData = new CineDto(req.body);
+        const result = await CineModel.update(id, cineData);
         if (result.matchedCount === 0) {
             return res.status(404).json({ message: 'Cine no encontrado' });
         }

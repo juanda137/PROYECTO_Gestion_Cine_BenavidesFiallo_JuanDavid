@@ -1,4 +1,5 @@
 import { PeliculaModel } from '../models/pelicula.model.js';
+import { PeliculaDto } from '../dtos/pelicula.dto.js';
 
 export const getAllPeliculas = async (req, res) => {
     try {
@@ -22,7 +23,8 @@ export const getPeliculaById = async (req, res) => {
 
 export const createPelicula = async (req, res) => {
     try {
-        const newPelicula = await PeliculaModel.create(req.body);
+        const peliculaData = new PeliculaDto(req.body);
+        const newPelicula = await PeliculaModel.create(peliculaData);
         res.status(201).json({ message: 'Película creada exitosamente', peliculaId: newPelicula.insertedId });
     } catch (error) {
         if (error.message.includes('código de la película ya existe')) {
@@ -35,7 +37,8 @@ export const createPelicula = async (req, res) => {
 export const updatePelicula = async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await PeliculaModel.update(id, req.body);
+        const peliculaData = new PeliculaDto(req.body);
+        const result = await PeliculaModel.update(id, peliculaData);
         if (result.matchedCount === 0) return res.status(404).json({ message: 'Película no encontrada' });
         res.status(200).json({ message: 'Película actualizada exitosamente' });
     } catch (error) {

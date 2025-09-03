@@ -1,4 +1,5 @@
 import { SalaModel } from '../models/sala.model.js';
+import { SalaDto } from '../dtos/sala.dto.js';
 
 export const getSalasByCine = async (req, res) => {
     try {
@@ -13,7 +14,8 @@ export const getSalasByCine = async (req, res) => {
 export const createSala = async (req, res) => {
     try {
         const { cineId } = req.params;
-        const salaData = { ...req.body, cine_id: cineId };
+        const salaDto = new SalaDto(req.body);
+        const salaData = { ...salaDto, cine_id: cineId };
         const newSala = await SalaModel.create(salaData);
         res.status(201).json({ message: 'Sala creada exitosamente', salaId: newSala.insertedId });
     } catch (error) {
@@ -24,7 +26,8 @@ export const createSala = async (req, res) => {
 export const updateSala = async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await SalaModel.update(id, req.body);
+        const salaData = new SalaDto(req.body);
+        const result = await SalaModel.update(id, salaData);
         if (result.matchedCount === 0) {
             return res.status(404).json({ message: 'Sala no encontrada' });
         }
