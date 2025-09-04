@@ -11,6 +11,7 @@ import salaRoutes from './routes/sala.routes.js';
 import peliculaRoutes from './routes/pelicula.routes.js';
 import funcionRoutes from './routes/funcion.routes.js';
 import userRoutes from './routes/user.routes.js';
+import boletaRoutes from './routes/boleta.routes.js';
 
 import reporteRoutes from './routes/reporte.routes.js';
 
@@ -31,6 +32,7 @@ app.use('/api/cines/:cineId/salas', authenticateToken, salaRoutes);
 app.use('/api/peliculas', authenticateToken, peliculaRoutes);
 app.use('/api/funciones', authenticateToken, funcionRoutes);
 app.use('/api/users', authenticateToken, userRoutes);
+app.use('/api/boletas', authenticateToken, boletaRoutes);
 
 app.use('/api/reportes', authenticateToken, reporteRoutes);
 
